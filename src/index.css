@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 打字机光标 */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s infinite;
+  color: #7C3AED;
+  font-weight: 300;
+}
+
+/* 渐变流动 */
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 球体浮动 */
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.orb-float {
+  animation: orbFloat 3s ease-in-out infinite;
+}
+
+/* 发光边框 */
+.hint-glow {
+  position: relative;
+  padding: 1px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #a855f7, #ec4899, #3b82f6, #10b981, #f59e0b, #a855f7);
+  background-size: 300% 100%;
+  animation: gradientFlow 3s linear infinite;
+}
+.hint-glow-inner {
+  border-radius: 9999px;
+}
+
+/* 面板流动渐变 */
+@keyframes panelFlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.panel-flow {
+  animation: panelFlow 20s linear infinite;
+}
+
+/* 加载点动画 */
+@keyframes loadingDots {
+  0%, 20% { opacity: 0; }
+  40% { opacity: 1; }
+  100% { opacity: 0; }
+}
+.loading-dot:nth-child(1) { animation: loadingDots 1.4s infinite 0s; }
+.loading-dot:nth-child(2) { animation: loadingDots 1.4s infinite 0.2s; }
+.loading-dot:nth-child(3) { animation: loadingDots 1.4s infinite 0.4s; }
+
+/* 脉冲动画 */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.animate-pulse-slow {
+  animation: pulse 2s ease-in-out infinite;
+}
