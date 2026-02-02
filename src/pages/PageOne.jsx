@@ -188,7 +188,7 @@ export default function PageOne() {
               playsInline
             />
           </div>
-          <h1 className="text-2xl font-semibold text-gray-900">Sugar 智能助手</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">智能创作</h1>
           <p className="text-sm text-gray-500 mt-1">让工作更高效</p>
         </motion.div>
 
@@ -204,7 +204,7 @@ export default function PageOne() {
             <textarea
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder="输入你的问题，或选择下方项目模板..."
+              placeholder="我已经熟悉了你的工作习惯,下方选择项目快速帮你完成工作"
               className="w-full min-h-[50px] max-h-[200px] text-sm bg-transparent outline-none resize-none placeholder:text-gray-400 text-gray-700 leading-relaxed mb-0"
             />
             
@@ -246,7 +246,7 @@ export default function PageOne() {
           transition={{ delay: 0.2 }}
           className="w-full max-w-2xl mt-8"
         >
-          <div className="text-sm font-medium text-gray-500 mb-3">项目推荐</div>
+          <div className="text-sm font-medium text-gray-500 mb-3">你的项目</div>
           <div className="flex flex-wrap gap-3">
             {PROJECTS.map((project) => {
               const Icon = project.icon

@@ -234,6 +234,10 @@ export default function PageThree() {
         if (editorRef.current) {
           editorRef.current.innerHTML = generateInitialHTML()
         }
+        // 内容生成完成后，延迟显示提示条
+        setTimeout(() => {
+          setShowContextHint(true)
+        }, 800)
       }
       return
     }
@@ -567,7 +571,7 @@ export default function PageThree() {
                       playsInline
                     />
                   </div>
-                  <span className="text-gray-700">已基于"随心搭"风险判断，总结待办，请确认。</span>
+                  <span className="text-gray-700">已为你判断当前的项目风险,请查看确认</span>
                   <span className="font-semibold" style={{ color: '#6366f1' }}>查看</span>
                 </div>
               </button>
@@ -595,8 +599,7 @@ export default function PageThree() {
               {/* 头部 */}
               <div className="relative sticky top-0 z-10 flex items-center justify-between px-5 pt-5 pb-3 bg-white/60 backdrop-blur-[28px] border-b border-white/60">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-semibold text-gray-900">Sugar 智能体</span>
-                  <span className="text-[11px] text-gray-500">风险分析</span>
+                  <span className="text-sm font-semibold text-gray-900">智能创作</span>
                 </div>
                 <button
                   onClick={() => setPanelOpen(false)}
@@ -611,7 +614,7 @@ export default function PageThree() {
                 {/* 任务识别卡片 */}
                 {!taskInserted && (
                   <div className="rounded-2xl border border-white/60 bg-white/80 p-4 shadow-[0_14px_30px_-22px_rgba(15,23,42,0.4)] mb-4">
-                    <div className="text-sm font-semibold text-gray-900 mb-2">📋 任务识别</div>
+                    <div className="text-sm font-semibold text-gray-900 mb-2">⚠️ 风险识别</div>
                     <div className="text-xs text-gray-500 mb-3">已基于"随心搭"风险判断，推荐待办，请确认：</div>
                     <div className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">
                       {TASK_CONTENT.split('\n').map((line, i) => (
@@ -664,10 +667,12 @@ export default function PageThree() {
                       className={`w-full text-left px-4 py-3 rounded-xl transition-all group flex items-center gap-3 ${
                         reportInserted
                           ? 'bg-green-50 border border-green-200'
-                          : 'bg-white hover:bg-gray-50 border border-gray-100 hover:border-gray-200'
+                          : 'bg-indigo-50/60 hover:bg-indigo-50 border border-indigo-100/60 hover:border-indigo-200'
                       }`}
                     >
-                      <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${reportInserted ? 'bg-green-500' : 'bg-indigo-500'}`} />
+                      <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${reportInserted ? 'bg-green-100' : 'bg-indigo-100'}`}>
+                        <FileText className={`w-4 h-4 ${reportInserted ? 'text-green-600' : 'text-indigo-600'}`} />
+                      </div>
                       <span className={`text-sm transition-colors ${
                         reportInserted ? 'text-green-700' : 'text-gray-700 group-hover:text-gray-900'
                       }`}>
@@ -676,14 +681,18 @@ export default function PageThree() {
                     </button>
                     
                     {/* OKR简报 */}
-                    <button className="w-full text-left px-4 py-3 rounded-xl bg-white hover:bg-gray-50 border border-gray-100 hover:border-gray-200 transition-all group flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+                    <button className="w-full text-left px-4 py-3 rounded-xl bg-blue-50/60 hover:bg-blue-50 border border-blue-100/60 hover:border-blue-200 transition-all group flex items-center gap-3">
+                      <div className="w-7 h-7 rounded-lg bg-blue-100 flex items-center justify-center shrink-0">
+                        <ChevronRight className="w-4 h-4 text-blue-600" />
+                      </div>
                       <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors">对应到上级OKR形成简报</span>
                     </button>
                     
                     {/* 需求规划 */}
-                    <button className="w-full text-left px-4 py-3 rounded-xl bg-white hover:bg-gray-50 border border-gray-100 hover:border-gray-200 transition-all group flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
+                    <button className="w-full text-left px-4 py-3 rounded-xl bg-amber-50/60 hover:bg-amber-50 border border-amber-100/60 hover:border-amber-200 transition-all group flex items-center gap-3">
+                      <div className="w-7 h-7 rounded-lg bg-amber-100 flex items-center justify-center shrink-0">
+                        <Sparkles className="w-4 h-4 text-amber-600" />
+                      </div>
                       <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors">结合数据和用户反馈形成需求规划</span>
                     </button>
                   </div>
